@@ -1,0 +1,37 @@
+﻿//Create.cshtml
+@model CMCS.Models.Claim
+@{
+    ViewData["Title"] = "Submit Claim";
+}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center text-primary">Submit New Claim</h2>
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">Lecturer Name</label>
+            <input asp-for="LecturerName" class="form-control" />
+            <span asp-validation-for="LecturerName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">HoursWorked Worked</label>
+            <input asp-for="HoursWorked" class="form-control" />
+            <span asp-validation-for="HoursWorked" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Hourly HourlyRate (R)</label>
+            <input asp-for="HourlyRate" class="form-control" />
+            <span asp-validation-for="HourlyRate" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Additional </label>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Upload Supporting Document</label>
+            <input type="file" name="upload" class="form-control" accept=".pdf,.docx,.xlsx" />
+        </div>
+        <button type="submit" class="btn btn-success w-100">Submit Claim</button>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

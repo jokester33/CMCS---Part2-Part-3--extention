@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CMCS.Models.Claim>
+
+@{
+    ViewData["Title"] = "HR Payment Report";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Approved Claims Report</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Lecturer Name</th>
+                    <th>Hours Worked</th>
+                    <th>Hourly Rate (R)</th>
+                    <th>Total Payment (R)</th>
+                    <th>Submitted Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in Model)
+                {
+                    <tr>
+                        <td>@claim.LecturerName</td>
+                        <td>@claim.HoursWorked</td>
+                        <td>@claim.HourlyRate</td>
+                        <td>@claim.TotalPay</td>
+                        <td>@claim.SubmittedDate.ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-end mt-3">
+            <h5>Total Payout: <span class="text-success fw-bold">R @ViewBag.TotalPayout</span></h5>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">No approved claims yet.</div>
+    }
+</div>

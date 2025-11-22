@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CMCS.Models.Claim>
+<h2 class="text-center mt-3">Pending Claims</h2>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Lecturer</th>
+            <th>HoursWorked</th>
+            <th>HourlyRate</th>
+            <th>Total (R)</th>
+            <th>Date Submitted</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.LecturerName</td>
+                <td>@c.HoursWorked</td>
+                <td>@c.HourlyRate</td>
+                <td>@c.TotalPay</td>
+                <td>@c.SubmittedDate.ToShortDateString()</td>
+                <td>
+                    <form asp-action="Approve" asp-route-id="@c.Id" method="post" style="display:inline;">
+                        <button class="btn btn-success btn-sm">Approve</button>
+                    </form>
+                    <form asp-action="Reject" asp-route-id="@c.Id" method="post" style="display:inline;">
+                        <button class="btn btn-danger btn-sm">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

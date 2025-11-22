@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CMCS.Models.Claim>
+@{
+    ViewData["Title"] = "My Claims";
+}
+<div class="container mt-4">
+    <h2 class="text-center mb-3">My Submitted Claims</h2>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">New Claim</a>
+    </p>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Lecturer</th>
+                <th>HoursWorked</th>
+                <th>HourlyRate (R)</th>
+                <th>Status</th>
+                <th>Document</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.LecturerName</td>
+                    <td>@item.HoursWorked</td>
+                    <td>@item.HourlyRate</td>
+                    <td>
+                        @if (item.Status == "Pending")
+                        {
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        }
+                        else if (item.Status == "Approved")
+                        {
+                            <span class="badge bg-success">Approved</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Rejected</span>
+                        }
+                    </td>
+
+                     
+                    <td>@item.SubmittedDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CMCS.Models.Claim>
+@{
+    ViewBag.Title = "Verify Claims";
+}
+<h2 class="mb-4">Pending Claims</h2>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Lecturer</th>
+            <th>HoursWorked</th>
+            <th>Hourly HourlyRate</th>
+            <th>Total Pay</th>
+            <th>Submitted</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>
+   
+                    @using (Html.BeginForm("ApproveClaim", "Manager", new { id = c.Id }, FormMethod.Post))
+   
+                    {
+       
+                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
+   
+                    }
+
+  
+                    @using (Html.BeginForm("RejectClaim", "Manager", new { id = c.Id }, FormMethod.Post))
+  
+                    {
+       
+                        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+  
+                    }
+
+
+</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@if (!Model.Any())
+{
+    <p class="text-muted">No pending claims found.</p>
+}
+

@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CMCS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            background-color: #121212;
+            color: #f1f1f1;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .navbar {
+            background-color: #1f1f1f;
+            padding: 1rem;
+        }
+
+        .navbar-brand {
+            color: #0dcaf0 !important;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #e0e0e0 !important;
+            margin-right: 1rem;
+            transition: color 0.3s;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #0dcaf0 !important;
+            }
+
+        footer {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding: 15px 0;
+            text-align: center;
+            color: #0dcaf0;
+            font-size: 14px;
+        }
+
+        .container {
+            padding-top: 40px;
+        }
+
+        .btn-primary, .btn-success {
+            border: none;
+        }
+
+            .btn-primary:hover, .btn-success:hover {
+                opacity: 0.85;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">CMCS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+
+                        <!-- Login -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+
+                        </li>
+
+                        <!-- Lecturer -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Lecturer" asp-action="Dashboard">Lecturer</a>
+                        </li>
+
+                        <!-- Coordinator -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Coordinator" asp-action="Dashboard">Coordinator</a>
+                        </li>
+
+                        <!-- Manager -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Manager" asp-action="Dashboard">Manager</a>
+
+
+                        </li>
+
+                        <!-- HR -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="HR" asp-action="Dashboard">HR</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        © 2025 - Claim Management System
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+@{
+    string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<li class="nav-item">
+    <a class="nav-link @(currentController == "HR" ? "active text-info" : "")" asp-controller="HR" asp-action="Dashboard">HR</a>
+</li>
+
